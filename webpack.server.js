@@ -1,11 +1,19 @@
 var path = require('path'),
-	nodeExternals = require('webpack-node-externals');
+	nodeExternals = require('webpack-node-externals'),
+	webpack = require("webpack");
 
 
-function createConfig() {
+function createConfig(isDebug) {
+	const plugins = [];
+
+	if (!isDebug) {
+		plugins.push(new webpack.optimize.UglifyJsPlugin());
+	}
+
+
+	//---------------------------
+	//WEBPACK Config
 	return {
-
-		//WEBPACK Config
 		target: "node",
 		devtool: "source-map",
 		entry: './src/server/server.js',
@@ -30,7 +38,8 @@ function createConfig() {
 				},
 			]
 		},
-		externals: [nodeExternals()]
+		externals: [nodeExternals()],
+		plugins: plugins
 	};
 }
 

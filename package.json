@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node build/server"
   },
   "author": "",
   "license": "ISC",
@@ -17,5 +17,8 @@
     "imports-loader": "^0.7.1",
     "webpack": "^2.2.1",
     "webpack-node-externals": "^1.5.4"
+  },
+  "dependencies": {
+    "source-map-support": "^0.4.12"
   }
 }
