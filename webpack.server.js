@@ -10,7 +10,6 @@ function createConfig(isDebug) {
 		plugins.push(new webpack.optimize.UglifyJsPlugin());
 	}
 
-
 	//---------------------------
 	//WEBPACK Config
 	return {
@@ -27,15 +26,9 @@ function createConfig(isDebug) {
 			}
 		},
 		module: {
-			rules: [
-				{
-					test: /\.js$/,
-					use: [
-						{ loader: "babel-loader" },
-						{ loader: "eslint-loader" }
-					],
-					exclude: [/node_modules/]
-				},
+			loaders: [
+				{ test: /\.js$/, loader: "babel-loader", exclude: /node_modules/ },
+				{ test: /\.js$/, loader: "eslint-loader", exclude: /node_modules/ }
 			]
 		},
 		externals: [nodeExternals()],
@@ -44,4 +37,4 @@ function createConfig(isDebug) {
 }
 
 module.exports = createConfig(true);
-//module.exports.create = createConfig;
+module.exports.create = createConfig;
