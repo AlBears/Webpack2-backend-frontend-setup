@@ -26,10 +26,19 @@ function createConfig(isDebug) {
 			}
 		},
 		module: {
-			loaders: [
-				{ test: /\.js$/, loader: "babel-loader", exclude: /node_modules/ },
-				{ test: /\.js$/, loader: "eslint-loader", exclude: /node_modules/ }
-			]
+			rules: [
+				{
+					enforce: "pre",
+					test: /\.js$/,
+					exclude: /node_modules/,
+					loader: "eslint-loader",
+				},
+				{
+					test: /\.js$/,
+					exclude: /node_modules/,
+					loader: "babel-loader",
+				},
+			],
 		},
 		externals: [nodeExternals()],
 		plugins: plugins
