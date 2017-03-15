@@ -2,9 +2,8 @@ import gulp from 'gulp';
 import webpack from 'webpack';
 import chalk from 'chalk';
 import rimraf from 'rimraf';
-import { create as createServerConfig } from './webpack.server';
-import { create as createClientConfig } from './webpack.client';
-
+import createServerConfig  from './webpack.server';
+import createClientConfig from './webpack.client';
 const $ = require('gulp-load-plugins')();
 
 //---------------------------------

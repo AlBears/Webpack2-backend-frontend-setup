@@ -12,8 +12,25 @@ function createConfig(isDebug) {
 		filename: "vendor.js"
 	})];
 
-	const cssLoader = { test: /\.css$/, use: ['style-loader', 'css-loader'], exclude: /node_modules/ };
-	const sassLoader = { test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader'], exclude: /node_modules/ };
+	const cssLoader = {
+		test: /\.css$/,
+		use: [{
+			loader:'style-loader'
+		}, {
+			loader:'css-loader'
+		}],
+		exclude: /node_modules/
+	};
+	const sassLoader = {
+		test: /\.scss$/,
+		use: [{
+			loader: "style-loader"
+		}, {
+			loader: "css-loader"
+		}, {
+			loader: "sass-loader"
+		}]
+	};
 	const appEntry = ['./src/client/application.js'];
 
 	if (!isDebug) {
@@ -29,11 +46,10 @@ function createConfig(isDebug) {
 			fallback: 'style-loader',
 			use: ['css-loader', 'sass-loader']
 		});
-
+	} else {
+		plugins.push(new webpack.HotModuleReplacementPlugin());
+		appEntry.splice(0, 0, "webpack-hot-middleware/client");
 	}
-
-
-
 	//--------------------
 	//WEBPACK CONFIG
 	return {
@@ -49,7 +65,7 @@ function createConfig(isDebug) {
 		},
 		resolve: {
 			alias: {
-				shared: path.resolve(__dirname, 'src/shared')
+				shared: path.join(dirname, 'src', 'shared')
 			}
 		},
 		module: {
@@ -79,5 +95,4 @@ function createConfig(isDebug) {
 	//-------------------
 }
 
-module.exports = createConfig(true);
-module.exports.create = createConfig;
+module.exports = createConfig;

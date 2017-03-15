@@ -45,5 +45,4 @@ function createConfig(isDebug) {
 	};
 }
 
-module.exports = createConfig(true);
-module.exports.create = createConfig;
+module.exports = createConfig;
