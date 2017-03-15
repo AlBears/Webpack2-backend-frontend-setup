@@ -7,3 +7,7 @@ foo();
 
 $('body').html('heheheheheh');
 console.log(_);
+
+if (module.hot) {
+	module.hot.accept();
+}
